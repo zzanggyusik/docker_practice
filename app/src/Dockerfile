@@ -5,14 +5,14 @@ FROM ubuntu:18.04
 #RUN apk add --no-cache python3 g++ make
 # RUN: 도커 이미지가 생성되기 전에 수행할 쉘 명령어
 
-ADD ./source.list /etc/apt/source.list
+ADD ./sources.list /etc/apt/source.list
 ADD ./requirements.txt /data/
 ADD ./run.script /data/
 ADD ./init.script /data/
 
-RUN apt update && apt install -y python3 \
-	python3-dev \
-	python3-pip \
+RUN apt update && apt install -y python2 \
+	python2-dev \
+	python2-pip \
 	git
 
 RUN chmod +x /data/run.script
