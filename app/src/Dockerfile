@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 # 일반 알파인은 경량화로 인한 npm install 불가능
 # ubuntu 18.04 == baseimg
 
@@ -11,6 +11,7 @@ ADD ./run.script /data/
 ADD ./init.script /data/
 
 RUN apt update && apt install -y python3 \
+	build-essential \
 	python3-dev \
 	python3-pip \
 	git
@@ -25,5 +26,5 @@ WORKDIR /data/
 RUN pip3 install -r /data/requirements.txt
 RUN /data/init.script
 
-VOLUME ["/Users/qsiik/Desktop/docker_practice/app/src/test.txt", "/data/"]
-#컨테이너 내에서 실행, 도커 파일 내에서 한번만 사용 가능
+VOLUME ["/Users/qsiik/Desktop/docker_practice/", "/data/"]
+# cmd 컨테이너 내에서 실행, 도커 파일 내에서 한번만 사용 가능
